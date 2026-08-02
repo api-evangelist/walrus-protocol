@@ -1,0 +1,77 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/walrus-protocol-aggregator-openapi.json, openapi/walrus-protocol-publisher-openapi.json
+format: custom
+envelope:
+  # Walrus HTTP daemons return errors in a machine + human readable "Status" envelope
+  # (google.rpc-style, NOT RFC 9457 problem+json). Content-Type: application/json.
+  schema: Status
+  shape:
+    error:
+      status: string   # UPPER_SNAKE_CASE general error type
+      code: integer     # HTTP status code
+      message: string   # human-readable detail
+      details: array    # machine-readable details (always includes an ErrorInfo)
+problems:
+  # --- Aggregator (read path) ---
+  - status: 400
+    title: Invalid request / consistency-check options
+    description: The consistency check options are invalid, or the request is malformed.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob_by_object_id
+      - openapi/walrus-protocol-publisher-openapi.json#put_blob
+  - status: 403
+    title: Blob exceeds configured maximum size
+    description: The blob size exceeds the maximum allowed size configured for this aggregator. The blob is still stored on Walrus and may be accessible through a different aggregator or the CLI.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob_by_object_id
+  - status: 404
+    title: Blob or quilt patch not found
+    description: The requested blob has not yet been stored on Walrus, or the requested quilt patch does not exist.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob
+      - openapi/walrus-protocol-aggregator-openapi.json#get_patch_by_quilt_id_and_identifier
+  - status: 416
+    title: Invalid byte range
+    description: The byte range parameters are invalid.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob_byte_range
+  - status: 451
+    title: Blob blocked / unavailable for legal reasons
+    description: The blob cannot be returned as it has been blocked.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob
+      - openapi/walrus-protocol-publisher-openapi.json#put_blob
+  - status: 500
+    title: Internal server error
+    description: An internal server error has occurred. Please report this error.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob
+      - openapi/walrus-protocol-publisher-openapi.json#put_blob
+  - status: 503
+    title: Blob temporarily not retrievable
+    description: Transient condition — the blob may be mid-upload, mid-expiry, or enough storage nodes may be temporarily unreachable to reconstruct it. Clients should retry with backoff.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-aggregator-openapi.json#get_blob
+  # --- Publisher (write path) ---
+  - status: 413
+    title: Blob or quilt too large
+    description: The blob (or quilt) is too large for this publisher.
+    source_operations:
+      - openapi/walrus-protocol-publisher-openapi.json#put_blob
+      - openapi/walrus-protocol-publisher-openapi.json#put_quilt
+  - status: 504
+    title: Store timeout
+    description: The service failed to store the blob to sufficient Walrus storage nodes before a timeout. Retry the operation.
+    schema: Status
+    source_operations:
+      - openapi/walrus-protocol-publisher-openapi.json#put_blob
+      - openapi/walrus-protocol-publisher-openapi.json#put_quilt

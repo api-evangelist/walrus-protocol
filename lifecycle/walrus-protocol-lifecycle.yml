@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.wal.app/, https://github.com/MystenLabs/walrus/releases, https://status.walrus.xyz
+versioning:
+  scheme: network-prefixed-semver
+  current_mainnet: v1.51.2
+  current_testnet: v1.52.1
+  api_path_versions: [v1, v1alpha]   # HTTP API path prefixes on aggregator/publisher
+  docs: https://docs.wal.app/docs/system-overview/available-networks
+networks:
+  - name: mainnet
+    description: Production network using real SUI and WAL tokens.
+  - name: testnet
+    description: Runs against Sui Testnet; used to test features before they graduate to mainnet.
+  - name: devnet
+    description: Bleeding-edge network where features land first.
+deprecation:
+  # Query parameters are marked deprecated in the OpenAPI (e.g. `deletable` on PUT /v1/blobs),
+  # signalling a spec-level deprecation posture, but no formal RFC 8594 Sunset/Deprecation
+  # HTTP header policy is documented.
+  policy_url: null
+  sunset_header: false
+  deprecated_parameters:
+    - openapi/walrus-protocol-publisher-openapi.json#put_blob (query: deletable)
+    - openapi/walrus-protocol-publisher-openapi.json#put_quilt (query: deletable)
+status_page: https://status.walrus.xyz
+sla:
+  url: null
+  notes: >
+    Availability is a property of the decentralized storage-node committee and any
+    public/self-run aggregator, not a single-vendor SLA. High availability is provided
+    via Red Stuff erasure coding across the node set.
+deprecated_operations: []

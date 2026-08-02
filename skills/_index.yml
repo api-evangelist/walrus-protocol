@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/walrus-protocol-publisher-openapi.json, openapi/walrus-protocol-aggregator-openapi.json
+skills:
+  - file: walrus-protocol-store-and-read-blob.md
+    name: Store and read a blob on Walrus
+    api: openapi/walrus-protocol-publisher-openapi.json
+    operations: [put_blob, get_blob, get_blob_byte_range]
+  - file: walrus-protocol-store-and-read-quilt.md
+    name: Store and read a Walrus quilt (batched small files)
+    api: openapi/walrus-protocol-publisher-openapi.json
+    operations: [put_quilt, get_patch_by_quilt_id_and_identifier, get_patch_by_quilt_patch_id, list_patches_in_quilt]

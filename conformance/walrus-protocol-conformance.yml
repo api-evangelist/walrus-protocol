@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/walrus-protocol-aggregator-openapi.json, openapi/walrus-protocol-publisher-openapi.json, well-known/walrus-protocol-api-catalog.json
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: Aggregator and publisher daemons serve OpenAPI 3.1.0 documents at /v1/api.
+  - id: rfc9727-api-catalog
+    conforms: true
+    evidence: docs.wal.app publishes /.well-known/api-catalog (linkset).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom google.rpc-style `Status` envelope, not application/problem+json.
+  - id: http-range-requests
+    conforms: true
+    evidence: GET /v1/blobs/{blob_id}/byte-range supports byte-range retrieval (416 on invalid range).
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme; HTTP daemons are unauthenticated by default.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: No /.well-known/security.txt published.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset/Deprecation HTTP header policy documented (deprecated query params only).

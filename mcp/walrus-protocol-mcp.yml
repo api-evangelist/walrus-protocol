@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/walrus-protocol-aggregator-openapi.json, openapi/walrus-protocol-publisher-openapi.json
+server:
+  name: walrus-protocol
+  transport: http
+  url: null   # no official hosted MCP server found at capture
+notes: >
+  No official Walrus-published MCP server was found. Walrus positions "Walrus Memory"
+  as a portable memory layer for AI agents, but that is a product surface, not a hosted
+  MCP endpoint. The tool list below is DERIVED one-to-one from the HTTP API operationIds
+  as a candidate for a forge_mcp_tools pass; it is not an authoritative Walrus artifact.
+tools:
+  - name: store_blob
+    description: Store a blob on Walrus for one or more epochs (publisher).
+    source_operation: openapi/walrus-protocol-publisher-openapi.json#put_blob
+  - name: store_quilt
+    description: Store multiple small files together as a quilt (publisher).
+    source_operation: openapi/walrus-protocol-publisher-openapi.json#put_quilt
+  - name: get_blob
+    description: Retrieve a blob by its blob ID (aggregator).
+    source_operation: openapi/walrus-protocol-aggregator-openapi.json#get_blob
+  - name: get_blob_by_object_id
+    description: Retrieve a blob (with attributes) by its Sui object ID.
+    source_operation: openapi/walrus-protocol-aggregator-openapi.json#get_blob_by_object_id
+  - name: get_blob_byte_range
+    description: Retrieve a specific byte range from a blob.
+    source_operation: openapi/walrus-protocol-aggregator-openapi.json#get_blob_byte_range
+  - name: get_patch_by_quilt_id_and_identifier
+    description: Retrieve a quilt patch by quilt ID and identifier.
+    source_operation: openapi/walrus-protocol-aggregator-openapi.json#get_patch_by_quilt_id_and_identifier
+  - name: get_patch_by_quilt_patch_id
+    description: Retrieve a quilt patch by its quilt patch ID.
+    source_operation: openapi/walrus-protocol-aggregator-openapi.json#get_patch_by_quilt_patch_id
+  - name: list_patches_in_quilt
+    description: List all patches in a quilt.
+    source_operation: openapi/walrus-protocol-aggregator-openapi.json#list_patches_in_quilt

@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/walrus-protocol-aggregator-openapi.json, openapi/walrus-protocol-publisher-openapi.json, https://docs.wal.app/
+summary:
+  types: []
+  api_key_in: []
+  oauth2_flows: []
+  model: none-by-default
+schemes: []
+notes: >
+  Neither the Walrus Aggregator nor the Walrus Publisher OpenAPI declares any
+  securityScheme — the public HTTP daemons are unauthenticated. Reads (aggregator)
+  are open. Writes (publisher) cost WAL/SUI, so public publishers are best-effort
+  and rate/size limited; operators who run their own publisher typically gate it
+  behind their own layer (e.g. a JWT-authenticated upload relay) rather than a
+  Walrus-native auth scheme. On-chain operations (registering/certifying blobs,
+  paying with WAL) are authorized by Sui wallet signatures, not by an HTTP API key.

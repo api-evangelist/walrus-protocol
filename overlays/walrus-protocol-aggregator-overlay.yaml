@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Walrus Aggregator
+  version: 1.0.0
+extends: openapi/walrus-protocol-aggregator-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: walrus-protocol
+      x-apievangelist-service: aggregator
+      x-apievangelist-role: read
+      x-apievangelist-error-envelope: Status (google.rpc-style, not RFC 9457)
+      x-apievangelist-content-addressed: true
+  - target: $.servers
+    update:
+      - url: https://aggregator.walrus-mainnet.walrus.space
+        description: Public mainnet aggregator (community/foundation operated).
+      - url: https://aggregator.walrus-testnet.walrus.space
+        description: Public testnet aggregator.
+  - target: $.info
+    update:
+      x-apievangelist-notes: >
+        Read-only HTTP daemon. Unauthenticated. Immutable, content-addressed blobs are
+        indefinitely cacheable per BlobId; aggregators return an ETag on reads.

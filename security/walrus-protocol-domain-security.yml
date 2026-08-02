@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.walrus.xyz
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 22 17:12:55 2026 GMT
+  hsts: false
+- host: docs.wal.app
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  3 18:37:00 2026 GMT
+  hsts: false
+- host: aggregator.walrus-mainnet.walrus.space
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 10 14:47:24 2026 GMT
+  hsts: null
+domains:
+- domain: walrus.xyz
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: wal.app
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

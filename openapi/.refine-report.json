@@ -1,0 +1,16 @@
+{
+  "provider": "walrus-protocol",
+  "sources": [
+    "walrus-protocol-routes-api-openapi.yml"
+  ],
+  "outputs": [
+    "walrus-protocol-routes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "walrus-protocol-routes-api-openapi.yml: dangling $ref: #/components/schemas/QuiltVersionEnum"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

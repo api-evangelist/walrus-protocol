@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Walrus Publisher
+  version: 1.0.0
+extends: openapi/walrus-protocol-publisher-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: walrus-protocol
+      x-apievangelist-service: publisher
+      x-apievangelist-role: write
+      x-apievangelist-idempotency: content-addressed (PUT keyed on BlobId; re-store returns alreadyCertified)
+      x-apievangelist-error-envelope: Status (google.rpc-style, not RFC 9457)
+  - target: $.servers
+    update:
+      - url: https://publisher.walrus-mainnet.walrus.space
+        description: Public mainnet publisher (community/foundation operated).
+      - url: https://publisher.walrus-testnet.walrus.space
+        description: Public testnet publisher.
+  - target: $.info
+    update:
+      x-apievangelist-notes: >
+        Write HTTP daemon. Public publishers are best-effort and size/rate limited because
+        writes cost WAL/SUI; run your own publisher (or a JWT-gated upload relay) for
+        production. Blobs are deletable by default since v1.33.

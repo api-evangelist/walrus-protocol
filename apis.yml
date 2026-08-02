@@ -1,8 +1,15 @@
 aid: walrus-protocol
 name: Walrus Protocol
-description: 'Walrus Protocol is a company surfaced as a portfolio company of electric-capital and added
-  to the API Evangelist network as a stub for enrichment. Sector: infrastructure. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: >-
+  Walrus is a decentralized blob storage protocol built on Sui by Mysten Labs, the team
+  behind the Sui blockchain. It provides robust, cost-effective storage for large binary
+  objects with high-availability guarantees using Red Stuff erasure coding across a
+  permissionless set of storage nodes. Data is content-addressed, immutable, verifiable
+  without trusting any single provider, and portable across apps, providers, and AI agents.
+  Developers interact through the `walrus` client CLI, a TypeScript SDK, and an HTTP API
+  served by publisher (write) and aggregator (read) daemons, with storage paid in WAL and
+  on-chain coordination in SUI. Walrus also powers Walrus Sites (decentralized web hosting)
+  and Walrus Memory (a portable memory layer for AI agents). Backed by Electric Capital.
 url: https://raw.githubusercontent.com/api-evangelist/walrus-protocol/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,18 +17,116 @@ x-backed-by:
 - electric-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
+accessModel:
+  pricing: unknown
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Open access
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://walrus.xyz/images/open-graph/og-home.jpg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Infrastructure
-apis: []
+- Storage
+- Decentralized Storage
+- Blockchain
+- Web3
+- Data
+- AI
+- Sui
+apis:
+- aid: walrus-protocol:walrus-protocol-routes-api
+  name: Walrus Protocol routes API
+  description: The routes API from Walrus Protocol — 9 operation(s) for routes.
+  humanURL: https://docs.wal.app/docs/http-api/reading-blobs
+  baseURL: https://aggregator.walrus-mainnet.walrus.space
+  tags:
+  - routes
+  properties:
+  - type: OpenAPI
+    url: openapi/walrus-protocol-routes-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/walrus-protocol-domain-security.yml
 - type: Website
   url: https://www.walrus.xyz/
+- type: DeveloperPortal
+  url: https://docs.wal.app/
+- type: Documentation
+  url: https://docs.wal.app/
+- type: APIReference
+  url: https://docs.wal.app/docs/http-api
+- type: GettingStarted
+  url: https://docs.wal.app/docs/getting-started
+- type: Blog
+  url: https://blog.walrus.xyz/
+- type: GitHubOrganization
+  url: https://github.com/MystenLabs
+- type: Support
+  url: https://discord.gg/walrusprotocol
+- type: Pricing
+  url: https://costcalculator.wal.app/
+- type: TermsOfService
+  url: https://docs.wal.app/docs/legal/walrus_general_tos
+- type: PrivacyPolicy
+  url: https://docs.wal.app/docs/legal/privacy
+- type: StatusPage
+  url: https://status.walrus.xyz
+- type: Whitepaper
+  url: https://docs.wal.app/walrus.pdf
+- type: ChangeLog
+  url: https://github.com/MystenLabs/walrus/releases
+- type: ChangeLog
+  url: changelog/walrus-protocol-changelog.yml
+- type: LLMsTxt
+  url: llms/walrus-protocol-llms.txt
+- type: WellKnown
+  url: well-known/walrus-protocol-well-known.yml
+- type: APICatalog
+  url: well-known/walrus-protocol-api-catalog.json
+- type: Packages
+  url: packages/walrus-protocol-packages.yml
+- type: SDKs
+  name: TypeScript SDK
+  url: packages/walrus-protocol-packages.yml
+- type: CLI
+  url: cli/walrus-protocol-cli.yml
+- type: MCPServer
+  url: mcp/walrus-protocol-mcp.yml
+- type: Authentication
+  url: authentication/walrus-protocol-authentication.yml
+- type: Conventions
+  url: conventions/walrus-protocol-conventions.yml
+- type: Idempotency
+  url: conventions/walrus-protocol-conventions.yml
+- type: ErrorCatalog
+  url: errors/walrus-protocol-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/walrus-protocol-lifecycle.yml
+- type: DataModel
+  url: data-model/walrus-protocol-data-model.yml
+- type: Conformance
+  url: conformance/walrus-protocol-conformance.yml
+- type: Sandbox
+  url: sandbox/walrus-protocol-sandbox.yml
+- type: AgentSkill
+  url: skills/_index.yml

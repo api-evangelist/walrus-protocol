@@ -1,0 +1,62 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/walrus-protocol-aggregator-openapi.json, openapi/walrus-protocol-publisher-openapi.json
+description: >
+  Entity-relationship graph derived from the Walrus HTTP API OpenAPI component
+  schemas. Walrus is content-addressed object storage: the primary durable entity is
+  a Blob, identified by a content-derived BlobId and backed by an on-Sui object
+  (ObjectID). Quilts batch many small files (patches) into one blob.
+entities:
+  - name: Blob
+    description: An immutable byte array stored on Walrus, represented on Sui as an object.
+    identifiers:
+      - field: blobId
+        type: BlobId
+        format: URL-safe base64 (content-addressed)
+        example: E7_nNXvFU_3qZVu3OH1yycRG7LZlyn1-UxEDCDDqGGU
+      - field: id
+        type: ObjectID
+        description: Sui object ID of the on-chain Blob object (hex).
+    fields: [size, encodingType, registeredEpoch, certifiedEpoch, deletable, storage]
+    relationships:
+      - kind: has_one
+        target: StorageResource
+        via: storage
+      - kind: belongs_to
+        target: SuiObject
+        via: id
+  - name: StorageResource
+    description: A reserved amount of storage on Walrus for a span of epochs.
+    identifiers:
+      - {field: id, type: ObjectID}
+    fields: [startEpoch, endEpoch, storageSize]
+  - name: Quilt
+    description: A batch of small files stored together; each file is a patch.
+    identifiers:
+      - {field: quiltId, type: BlobId}
+    relationships:
+      - kind: has_many
+        target: StoredQuiltPatch
+        via: storedQuiltBlobs
+      - kind: has_one
+        target: Blob
+        via: blobStoreResult
+  - name: StoredQuiltPatch
+    description: One file within a quilt, addressable by identifier or quilt patch ID.
+    identifiers:
+      - {field: quiltPatchId, type: QuiltPatchId}
+      - {field: identifier, type: string}
+    fields: [range, tags]
+  - name: BlobStoreResult
+    description: Outcome of a store operation — alreadyCertified, newlyCreated, markedInvalid, or error.
+    relationships:
+      - {kind: has_one, target: Blob, via: newlyCreated.blob_object}
+  - name: EventID
+    description: A Sui event reference (txDigest + eventSeq) marking certification/invalidation.
+  - name: SuiAddress
+    description: Sui account address (hex) that can own a blob object.
+id_types:
+  - {name: BlobId, domain: walrus, note: content-addressed, always maps to the same bytes}
+  - {name: ObjectID, domain: sui, note: hex 0x-prefixed Sui object ID}
+  - {name: SuiAddress, domain: sui, note: hex 0x-prefixed account address}
+  - {name: QuiltPatchId, domain: walrus, note: URL-safe base64 without trailing '=' }

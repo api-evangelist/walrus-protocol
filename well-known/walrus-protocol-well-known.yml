@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+hosts:
+  - host: https://docs.wal.app
+    documents:
+      - path: /.well-known/api-catalog        # RFC 9727
+        status: 200
+        file: walrus-protocol-api-catalog.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://www.walrus.xyz
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+      - path: /.well-known/api-catalog
+        status: 301
+  - host: https://aggregator.walrus-testnet.walrus.space
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+notes: >
+  docs.wal.app publishes an RFC 9727 API Catalog (/.well-known/api-catalog) whose
+  linkset points at the Walrus CLI reference, HTTP API reference, and the
+  mainnet aggregator/publisher service docs. No security.txt, OpenID, or OAuth
+  discovery documents are published (Walrus HTTP daemons are unauthenticated by
+  default; auth is a self-hosted-publisher concern).

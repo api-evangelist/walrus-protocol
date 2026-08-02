@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.wal.app/docs/system-overview/available-networks, https://docs.wal.app/llms.txt
+description: >
+  Walrus provides a full public Testnet that mirrors Mainnet and runs against Sui
+  Testnet. It is the sandbox for development: no real-value tokens, public HTTP
+  aggregator/publisher endpoints, and a faucet path to obtain test WAL.
+networks:
+  - name: testnet
+    purpose: development and testing before features graduate to mainnet
+    tokens: test SUI + test WAL (no real value)
+    public_endpoints:
+      aggregator: https://aggregator.walrus-testnet.walrus.space   # verified 200
+      publisher: https://publisher.walrus-testnet.walrus.space     # verified 200
+  - name: mainnet
+    purpose: production
+    tokens: real SUI + real WAL
+    public_endpoints:
+      aggregator: https://aggregator.walrus-mainnet.walrus.space   # verified 200
+      publisher: https://publisher.walrus-mainnet.walrus.space
+test_tokens:
+  detail: >
+    On testnet, obtain test SUI from the Sui testnet faucet, then exchange it for test
+    WAL with `walrus get-wal` (or the CLI's get-wal flow). Storing a test blob then
+    costs only test tokens.
+  faucet: sui client faucet (Sui testnet) + walrus get-wal
+notes: >
+  Walrus publishes no fixed "magic" test identifiers (unlike a payments sandbox); the
+  testnet is a real, separate live network. Any blob you store on testnet is still
+  public. Never store secrets — use an encryption layer (Seal) for private data.

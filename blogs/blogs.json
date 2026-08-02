@@ -1,0 +1,21 @@
+{
+  "repo": "walrus-protocol",
+  "feeds": [
+    {
+      "source": "https://docs.wal.app/blog/rss.xml",
+      "feed_url": "https://docs.wal.app/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://docs.wal.app/docs/getting-started",
+      "feed_url": "https://docs.wal.app/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 6,
+  "fetched": "2026-08-01T15:49:00Z"
+}

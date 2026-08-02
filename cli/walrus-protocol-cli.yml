@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.wal.app/docs/client-cli, https://github.com/MystenLabs/walrus
+name: walrus
+description: >
+  The `walrus` client is the primary way to interact with Walrus. It stores, reads,
+  and manages blobs, inspects on-chain blob/storage objects, manages WAL, and can run
+  as a local daemon exposing the same HTTP API served by public aggregators/publishers.
+docs: https://docs.wal.app/docs/client-cli
+install:
+  - method: suiup
+    command: suiup install walrus
+  - method: binary
+    note: Download the prebuilt binary from GitHub Releases (per network) and place on PATH.
+    url: https://github.com/MystenLabs/walrus/releases
+  - method: cargo
+    command: "cargo install --git https://github.com/MystenLabs/walrus walrus-service --bin walrus"
+config:
+  file: ~/.config/walrus/client_config.yaml
+  networks: [mainnet, testnet]
+commands:
+  - group: blobs
+    commands:
+      - store         # store one or more files as blobs (--epochs, --deletable, --permanent)
+      - read          # read a blob by blob ID to stdout or a file
+      - blob-id       # compute the blob ID of a file without storing
+      - blob-status   # query the certification status of a blob
+      - delete        # delete a deletable blob owned by the wallet
+      - list-blobs    # list blob objects owned by the active wallet
+      - extend        # extend the storage duration (epochs) of a stored blob
+  - group: quilt
+    commands:
+      - store-quilt   # store many small files together as a quilt
+      - read-quilt    # read a patch from a quilt by identifier or patch ID
+      - list-patches-in-quilt
+  - group: daemon
+    commands:
+      - aggregator    # run the read-only HTTP aggregator daemon
+      - publisher     # run the write HTTP publisher daemon
+      - daemon        # run combined aggregator + publisher
+  - group: system
+    commands:
+      - info          # show current epoch, committee, and system parameters
+      - health        # check the health of storage nodes
+      - get-wal       # exchange SUI for WAL (testnet) / manage WAL balance
+key_flows:
+  - "Store a file: walrus store <file> --epochs 5"
+  - "Read a blob: walrus read <blob_id> --out <file>"
+  - "Run a local HTTP gateway: walrus daemon --bind-address 127.0.0.1:31415"
+notes: The CLI binary itself is catalogued in packages/walrus-protocol-packages.yml.

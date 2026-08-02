@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.npmjs.com/package/@mysten/walrus, https://sdk.mystenlabs.com/walrus, https://github.com/MystenLabs/walrus/releases
+packages:
+  - language: typescript
+    registry: npm
+    name: "@mysten/walrus"
+    version: 1.2.9
+    url: https://www.npmjs.com/package/@mysten/walrus
+    install: npm install @mysten/walrus
+    docs: https://sdk.mystenlabs.com/walrus
+    repository: https://github.com/MystenLabs/ts-sdks
+    license: Apache-2.0
+    official: true
+    description: Official Walrus TypeScript SDK (Mysten Labs) for storing and reading blobs and quilts.
+  - language: typescript
+    registry: npm
+    name: "@mysten/walrus-wasm"
+    version: 0.3.0
+    url: https://www.npmjs.com/package/@mysten/walrus-wasm
+    install: npm install @mysten/walrus-wasm
+    license: Apache-2.0
+    official: true
+    description: WASM bindings used by the Walrus TypeScript SDK (encoding/decoding in the browser and Node).
+  - language: rust
+    registry: source
+    name: walrus (client CLI + crates)
+    url: https://github.com/MystenLabs/walrus
+    install: "cargo install --git https://github.com/MystenLabs/walrus walrus-service --bin walrus"
+    license: Apache-2.0
+    official: true
+    description: >
+      The `walrus` client is written in Rust (crates walrus-core / walrus-service /
+      walrus-storage-node-client). It is distributed as a prebuilt binary via GitHub
+      Releases and via suiup/homebrew, or built from source with Cargo. Not published
+      to crates.io at capture. The binary also runs in daemon mode to expose the HTTP API.
+notes: >
+  PyPI `walrus` (a Redis utility) is unrelated and NOT first-party — excluded. No
+  first-party Java/.NET/Go/Ruby/PHP client library was found.

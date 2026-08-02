@@ -1,0 +1,62 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/walrus-protocol-aggregator-openapi.json, openapi/walrus-protocol-publisher-openapi.json, https://docs.wal.app/
+description: >
+  Cross-cutting request/response semantics of the Walrus HTTP API (the aggregator
+  read daemon and the publisher write daemon). Derived from the OpenAPI specs and the
+  published documentation.
+authentication:
+  style: none-by-default
+  detail: >
+    Public aggregators and publishers serve requests without authentication. The HTTP
+    daemons declare no securitySchemes. Operators who self-host a publisher can put it
+    behind their own auth (e.g. a JWT-gated upload relay) since writes cost WAL/SUI.
+  see: authentication/walrus-protocol-authentication.yml
+idempotency:
+  supported: true
+  mechanism: content-addressing
+  detail: >
+    Writes are idempotent by content. PUT /v1/blobs is keyed on the content-derived
+    BlobId: storing bytes that are already certified for the requested duration returns
+    `alreadyCertified` rather than creating a duplicate, so retries are safe and do not
+    double-store. No Idempotency-Key header is required. `force=true` overrides this to
+    always create a new Blob object.
+  header: null
+pagination:
+  supported: false
+  detail: >
+    The HTTP API is object-addressed (get/put by ID); it exposes no list endpoints that
+    paginate. `GET /v1/quilts/{quilt_id}/patches` returns the full patch set for a quilt.
+content_addressing:
+  detail: Blobs are immutable and content-addressed; a BlobId always maps to the same bytes.
+caching:
+  detail: >
+    Because blobs are immutable, responses are safely cacheable indefinitely per BlobId.
+    Aggregators return an ETag (the blob/quilt-patch ID) on reads; CDN fronting is
+    recommended for hot reads.
+  see: https://docs.wal.app/docs/system-overview/caching
+range_requests:
+  supported: true
+  detail: GET /v1/blobs/{blob_id}/byte-range supports retrieving a specific byte range (416 on invalid range).
+metadata:
+  detail: >
+    Quilt patches carry a Walrus-native `tags` map (string key/value) and an `identifier`.
+    On reads, patch metadata is returned as response headers (X-Quilt-Patch-Identifier, ETag).
+versioning:
+  style: uri-path
+  detail: HTTP paths are versioned by prefix (`/v1`, `/v1alpha`). Service releases use network-prefixed semver.
+  see: lifecycle/walrus-protocol-lifecycle.yml
+error_envelope:
+  shape: custom
+  detail: >
+    Errors return a JSON `Status` object — {error:{status (UPPER_SNAKE_CASE), code (int),
+    message, details[]}} — google.rpc-style, not RFC 9457 problem+json.
+  see: errors/walrus-protocol-problem-types.yml
+rate_limiting:
+  detail: >
+    No standard rate-limit headers are declared in the spec. Public publishers/aggregators
+    are best-effort community/foundation infrastructure and may throttle or size-limit
+    (403 when a blob exceeds an aggregator's configured max size); run your own daemon for
+    production throughput.
+encoding:
+  detail: Blobs are erasure-coded (Red Stuff / RS2 encoding type) across storage nodes.
