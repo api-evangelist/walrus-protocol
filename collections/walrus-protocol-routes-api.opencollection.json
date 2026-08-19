@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Walrus Aggregator routes API",
+    "version": "1.52.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a Walrus blob with its associated attribute.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/blobs/by-object-id/:blob_object_id",
+            "params": [
+              {
+                "name": "blob_object_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "First retrieves the blob metadata from Sui using the provided object ID (either of the blob\nobject or a shared blob), then uses the blob ID from that metadata to fetch the actual blob\ndata via the get_blob function. The response includes the raw data along with any attribute\nheaders from the metadata that are present in the configured allowed_headers set."
+        },
+        {
+          "info": {
+            "name": "Retrieve a patch from a Walrus quilt by its quilt ID and identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/blobs/by-quilt-id/:quilt_id/:identifier",
+            "params": [
+              {
+                "name": "quilt_id",
+                "value": "",
+                "type": "path",
+                "description": "The quilt's blob ID."
+              },
+              {
+                "name": "identifier",
+                "value": "my-file.txt",
+                "type": "path",
+                "description": "The identifier of the patch within the quilt"
+              }
+            ]
+          },
+          "docs": "Takes a quilt ID and an identifier and returns the corresponding patch from the quilt.\nThe patch content is returned as raw bytes in the response body, while metadata\nsuch as the patch identifier and tags are returned in response headers.\n\n# Example\n```bash\ncurl -X GET \"$aggregator/v1/blobs/by-quilt-id/\\\nrkcHpHQrornOymttgvSq3zvcmQEsMqzmeUM1HSY4ShU/my-file.txt\"\n```\n\nResponse:\n```text\nHTTP/1.1 200 OK\nContent-Type: application/octet-stream\nX-Quilt-Patch-Identifier: my-file.txt\nETag: \"rkcHpHQrornOym"
+        },
+        {
+          "info": {
+            "name": "Retrieve a patch from a Walrus quilt by its quilt patch ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/blobs/by-quilt-patch-id/:quilt_patch_id",
+            "params": [
+              {
+                "name": "quilt_patch_id",
+                "value": "DJHLsgUoKQKEPcw3uehNQwuJjMu5a2sRdn8r-f7iWSAAC8Pw",
+                "type": "path",
+                "description": "The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+              }
+            ]
+          },
+          "docs": "Takes a quilt patch ID and returns the corresponding patch from the quilt.\nThe patch content is returned as raw bytes in the response body, while metadata\nsuch as the patch identifier and tags are returned in response headers.\n\n# Example\n```bash\ncurl -X GET \"$AGGREGATOR/v1/blobs/by-quilt-patch-id/\\\nDJHLsgUoKQKEPcw3uehNQwuJjMu5a2sRdn8r-f7iWSAAC8Pw\"\n```\n\nResponse:\n```text\nHTTP/1.1 200 OK\nContent-Type: application/octet-stream\nX-Quilt-Patch-Identifier: my-file.txt\nETag: \"DJHLsgUoKQKEPcw3uehNQwuJjMu"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Walrus blob.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/blobs/:blob_id",
+            "params": [
+              {
+                "name": "blob_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "strict_consistency_check",
+                "value": "",
+                "type": "query",
+                "description": "Whether to perform a strict consistency check.\n\nThis was the default before `v1.37`. In `v1.37`, the default consistency was changed to a\nmore performant one, which is sufficient for the majority of cases. This flag can be used to\nenable the previous strict consistency check. See\n<https://docs.wal.app/design/encoding.html#data-integrity-and-consistency> for more details."
+              },
+              {
+                "name": "skip_consistency_check",
+                "value": "",
+                "type": "query",
+                "description": "Whether to skip consistency checks entirely.\n\nWhen enabled, this flag bypasses all consistency verification during blob reading. This\nshould be used only when the writer of the blob is trusted. Does *not* affect any\nauthentication checks for data received from storage nodes, which are always performed."
+              }
+            ]
+          },
+          "docs": "Reconstructs the blob identified by the provided blob ID from Walrus and returns its raw data.\n\n# HTTP Range Support\n\nThis endpoint also accepts the HTTP `Range` header to request only a portion of the blob.\nWhen a `Range` header is provided with a specific byte range (e.g., `bytes=100-199`), the\nendpoint returns HTTP 206 Partial Content with the requested byte range.\n\n**Important**: When using byte range requests, only the consistency of the individual fetched\nslivers is validated. The entire b"
+        },
+        {
+          "info": {
+            "name": "Retrieve a specific byte range from a Walrus blob.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/blobs/:blob_id/byte-range",
+            "params": [
+              {
+                "name": "blob_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "The starting byte position (0-indexed, inclusive)."
+              },
+              {
+                "name": "length",
+                "value": "",
+                "type": "query",
+                "description": "The number of bytes to read."
+              }
+            ]
+          },
+          "docs": "Reads a specific portion of a blob identified by the blob ID, starting from a given byte\nposition and reading a specified number of bytes. This is more efficient than retrieving the\nentire blob when only a portion is needed.\n\nNote that this endpoint has reduced consistency guarantees compared to the full blob read\nsince it will only validate the consistency of individual fetched slivers.\n\n# Query Parameters\n- `start`: The starting byte position (0-indexed, inclusive)\n- `length`: The number of by"
+        },
+        {
+          "info": {
+            "name": "List patches in a quilt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/quilts/:quilt_id/patches",
+            "params": [
+              {
+                "name": "quilt_id",
+                "value": "rkcHpHQrornOymttgvSq3zvcmQEsMqzmeUM1HSY4ShU",
+                "type": "path",
+                "description": "The quilt ID encoded as URL-safe base64"
+              }
+            ]
+          },
+          "docs": "Returns a list of identifiers and quilt patch IDs for all patches contained in the specified\nquilt. Each quilt patch ID can be used with the `/v1/blobs/by-quilt-patch-id` endpoint to\nretrieve the actual blob data.\n\n# Example\n```bash\ncurl -X GET \"$aggregator/v1/quilts/patches-by-id/\\\nrkcHpHQrornOymttgvSq3zvcmQEsMqzmeUM1HSY4ShU\"\n```\n\nResponse:\n```json\n[\n  {\n    \"identifier\": \"walrus-38.jpeg\",\n    \"patch_id\": \"uIiEbhP2qgZYygEGxJX1GeB-rQATo2yufC2DCp7B4iABAQANAA\"\n  },\n  {\n    \"identifier\": \"walrus-39"
+        },
+        {
+          "info": {
+            "name": "Concatenate and stream multiple blobs via GET.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1alpha/blobs/concat",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of blob IDs or object IDs to concatenate."
+              },
+              {
+                "name": "read_options",
+                "value": "",
+                "type": "query",
+                "description": "Consistency check options for reading the blobs."
+              }
+            ]
+          },
+          "docs": "Retrieves multiple blobs specified by comma-separated blob IDs or object IDs in the query\nparameter, and streams them concatenated in the order specified. Each blob is loaded,\nstreamed, and then freed from memory before the next blob is processed."
+        },
+        {
+          "info": {
+            "name": "Concatenate and stream multiple blobs via POST.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1alpha/blobs/concat",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves multiple blobs specified in a JSON request body containing an array of blob IDs\nor object IDs, and streams them concatenated in the order specified. Each blob is loaded,\nstreamed, and then freed from memory before the next blob is processed."
+        },
+        {
+          "info": {
+            "name": "Store a blob on Walrus.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/blobs",
+            "params": [
+              {
+                "name": "encoding_type",
+                "value": "",
+                "type": "query",
+                "description": "The encoding type to use for the blob."
+              },
+              {
+                "name": "epochs",
+                "value": "",
+                "type": "query",
+                "description": "The number of epochs, ahead of the current one, for which to store the blob.\n\nThe default is 1 epoch."
+              },
+              {
+                "name": "deletable",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher creates a deletable blob.\n\nNew blobs are created as deletable by default since v1.33, and this flag is no longer\nrequired."
+              },
+              {
+                "name": "permanent",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher creates a permanent blob instead of a deletable one.\n\nThis was the default behavior before v1.33, but *blobs are now deletable by default*."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher will always store the blob, creating a new Blob object.\n\nThe blob will be stored even if the blob is already certified on Walrus for the specified\nnumber of epochs."
+              },
+              {
+                "name": "quilt_version",
+                "value": "",
+                "type": "query",
+                "description": "The quilt version to use (for quilt endpoints only).\nValid values: \"v1\", \"V1\", or \"1\". Defaults to \"v1\" if not specified."
+              },
+              {
+                "name": "reuse_resources",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher will attempt to reuse existing on-chain resources (e.g., storage and\nblob objects) when storing a blob."
+              },
+              {
+                "name": "send_or_share",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Store a (potentially deletable) blob on Walrus for 1 or more epochs. The associated on-Sui\nobject can be sent to a specified Sui address."
+        },
+        {
+          "info": {
+            "name": "Store multiple files as a quilt using multipart/form-data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/quilts",
+            "params": [
+              {
+                "name": "encoding_type",
+                "value": "",
+                "type": "query",
+                "description": "The encoding type to use for the blob."
+              },
+              {
+                "name": "epochs",
+                "value": "",
+                "type": "query",
+                "description": "The number of epochs, ahead of the current one, for which to store the blob.\n\nThe default is 1 epoch."
+              },
+              {
+                "name": "deletable",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher creates a deletable blob.\n\nNew blobs are created as deletable by default since v1.33, and this flag is no longer\nrequired."
+              },
+              {
+                "name": "permanent",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher creates a permanent blob instead of a deletable one.\n\nThis was the default behavior before v1.33, but *blobs are now deletable by default*."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher will always store the blob, creating a new Blob object.\n\nThe blob will be stored even if the blob is already certified on Walrus for the specified\nnumber of epochs."
+              },
+              {
+                "name": "quilt_version",
+                "value": "",
+                "type": "query",
+                "description": "The quilt version to use (for quilt endpoints only).\nValid values: \"v1\", \"V1\", or \"1\". Defaults to \"v1\" if not specified."
+              },
+              {
+                "name": "reuse_resources",
+                "value": "",
+                "type": "query",
+                "description": "If true, the publisher will attempt to reuse existing on-chain resources (e.g., storage and\nblob objects) when storing a blob."
+              },
+              {
+                "name": "send_or_share",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Accepts a multipart form with files and optional per-file Walrus-native metadata.\nThe form contains:\n- Files identified by their identifiers as field names\n- An optional `_metadata` field containing a JSON array with per-file Walrus-native metadata\n\n# Contents of Walrus-native metadata\n- `identifier`: The identifier of the file, must match the corresponding file field name\n- `tags`: JSON object with string key-value pairs (optional)\n\nFiles without corresponding metadata entries will be stored wi"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

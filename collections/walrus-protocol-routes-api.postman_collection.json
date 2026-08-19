@@ -1,0 +1,4195 @@
+{
+  "item": [
+    {
+      "id": "c703ed49-0981-4345-a581-e86281a19be4",
+      "name": "routes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d74f7ac-00d3-45d2-b0a9-b5808cddb2c6",
+          "name": "Retrieve a Walrus blob with its associated attribute.",
+          "request": {
+            "name": "Retrieve a Walrus blob with its associated attribute.",
+            "description": {
+              "content": "First retrieves the blob metadata from Sui using the provided object ID (either of the blob\nobject or a shared blob), then uses the blob ID from that metadata to fetch the actual blob\ndata via the get_blob function. The response includes the raw data along with any attribute\nheaders from the metadata that are present in the configured allowed_headers set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "blobs",
+                "by-object-id",
+                ":blob_object_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blob_object_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6adaadca-ea14-4071-9da7-09f6bc35bf73",
+              "name": "The blob was reconstructed successfully. Any attribute headers present in this aggregator's allowed_headers configuration will be included in the response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0fe43d1f-6b7e-4311-ad3d-a708289d8159",
+              "name": "The consistency check options are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dff86d2f-697f-4fc0-9dc7-30b7113eb0d4",
+              "name": "The blob size exceeds the maximum allowed size that was configured for this service. The blob is still stored on Walrus and may be accessible through a different aggregator or the CLI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47e8f5e9-5863-4d7c-8e2e-e7653011b57f",
+              "name": "May be returned when (1) The requested blob has not yet been stored on Walrus. (2) The requested quilt patch does not exist on Walrus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c44b18bb-f8cb-406e-90c9-452b6bf48330",
+              "name": "The byte range parameters are invalid. This error is returned when the byte range parameters are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Requested Range Not Satisfiable",
+              "code": 416,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d0419e8-7061-40a1-9404-5174b33eea16",
+              "name": "The blob cannot be returned as has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ad2e142-930c-4aff-b7fe-44ede7f6f617",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e366840-62ab-47fc-b6f9-cfbf727074a2",
+              "name": "The requested blob is currently not retrievable from the storage network. This is a transient condition: the blob may be mid-upload, mid-expiry, or enough storage nodes may be temporarily unreachable that the client cannot reconstruct the blob or determine a definitive status. Clients should retry with backoff.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-object-id",
+                    ":blob_object_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blob_object_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "336d0d77-92fc-4c17-bf4c-cb6fba9f96e6",
+          "name": "Retrieve a patch from a Walrus quilt by its quilt ID and identifier.",
+          "request": {
+            "name": "Retrieve a patch from a Walrus quilt by its quilt ID and identifier.",
+            "description": {
+              "content": "Takes a quilt ID and an identifier and returns the corresponding patch from the quilt.\nThe patch content is returned as raw bytes in the response body, while metadata\nsuch as the patch identifier and tags are returned in response headers.\n\n# Example\n```bash\ncurl -X GET \"$aggregator/v1/blobs/by-quilt-id/\\\nrkcHpHQrornOymttgvSq3zvcmQEsMqzmeUM1HSY4ShU/my-file.txt\"\n```\n\nResponse:\n```text\nHTTP/1.1 200 OK\nContent-Type: application/octet-stream\nX-Quilt-Patch-Identifier: my-file.txt\nETag: \"rkcHpHQrornOymttgvSq3zvcmQEsMqzmeUM1HSY4ShU\"\n\n[raw data]\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "blobs",
+                "by-quilt-id",
+                ":quilt_id",
+                ":identifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<byte>",
+                  "key": "quilt_id",
+                  "description": "(Required) The quilt's blob ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The identifier of the patch within the quilt"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ea1e6fb-5081-4ec6-a3fe-c92fd9156d5e",
+              "name": "The patch was retrieved successfully. Returns the raw bytes of the patch; the identifier and other attributes are returned as headers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-id",
+                    ":quilt_id",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt's blob ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier of the patch within the quilt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e3fc003-0279-470f-b401-86926c2b86aa",
+              "name": "The blob size exceeds the maximum allowed size that was configured for this service. The blob is still stored on Walrus and may be accessible through a different aggregator or the CLI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-id",
+                    ":quilt_id",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt's blob ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier of the patch within the quilt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5174ab2a-d212-42d0-a504-d11acc23f862",
+              "name": "May be returned when (1) The requested blob has not yet been stored on Walrus. (2) The requested quilt patch does not exist on Walrus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-id",
+                    ":quilt_id",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt's blob ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier of the patch within the quilt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12e5a642-34a0-4e3d-a5ac-7abbab063a8e",
+              "name": "The byte range parameters are invalid. This error is returned when the byte range parameters are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-id",
+                    ":quilt_id",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt's blob ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier of the patch within the quilt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Requested Range Not Satisfiable",
+              "code": 416,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d25145d-9ed2-481f-8ac5-7935420b69fb",
+              "name": "The blob cannot be returned as has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-id",
+                    ":quilt_id",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt's blob ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier of the patch within the quilt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c59b519-1003-4ec7-86dc-a8effd2f30ab",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-id",
+                    ":quilt_id",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt's blob ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier of the patch within the quilt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e22043f-f6e1-4b33-8d49-74eb53cdb34f",
+              "name": "The requested blob is currently not retrievable from the storage network. This is a transient condition: the blob may be mid-upload, mid-expiry, or enough storage nodes may be temporarily unreachable that the client cannot reconstruct the blob or determine a definitive status. Clients should retry with backoff.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-id",
+                    ":quilt_id",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt's blob ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier of the patch within the quilt"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da3791f9-0adc-4f03-8ddd-2ff6b0543dcd",
+          "name": "Retrieve a patch from a Walrus quilt by its quilt patch ID.",
+          "request": {
+            "name": "Retrieve a patch from a Walrus quilt by its quilt patch ID.",
+            "description": {
+              "content": "Takes a quilt patch ID and returns the corresponding patch from the quilt.\nThe patch content is returned as raw bytes in the response body, while metadata\nsuch as the patch identifier and tags are returned in response headers.\n\n# Example\n```bash\ncurl -X GET \"$AGGREGATOR/v1/blobs/by-quilt-patch-id/\\\nDJHLsgUoKQKEPcw3uehNQwuJjMu5a2sRdn8r-f7iWSAAC8Pw\"\n```\n\nResponse:\n```text\nHTTP/1.1 200 OK\nContent-Type: application/octet-stream\nX-Quilt-Patch-Identifier: my-file.txt\nETag: \"DJHLsgUoKQKEPcw3uehNQwuJjMu5a2sRdn8r-f7iWSAAC8Pw\"\n\n[raw data]\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "blobs",
+                "by-quilt-patch-id",
+                ":quilt_patch_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                  "key": "quilt_patch_id",
+                  "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d00a6817-83ba-4268-933b-1eeca2341baf",
+              "name": "The patch was retrieved successfully. Returns the raw bytes of the patch; the identifier and other attributes are returned as header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-patch-id",
+                    ":quilt_patch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                      "key": "quilt_patch_id",
+                      "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34ea57bf-f4ac-45ef-8f5d-e9e7f67440f7",
+              "name": "The blob size exceeds the maximum allowed size that was configured for this service. The blob is still stored on Walrus and may be accessible through a different aggregator or the CLI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-patch-id",
+                    ":quilt_patch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                      "key": "quilt_patch_id",
+                      "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d72e5ec-da66-44a3-a530-28a4ade2b512",
+              "name": "May be returned when (1) The requested blob has not yet been stored on Walrus. (2) The requested quilt patch does not exist on Walrus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-patch-id",
+                    ":quilt_patch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                      "key": "quilt_patch_id",
+                      "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a018e70e-2375-4bc7-acad-3213c09e6fb0",
+              "name": "The byte range parameters are invalid. This error is returned when the byte range parameters are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-patch-id",
+                    ":quilt_patch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                      "key": "quilt_patch_id",
+                      "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Requested Range Not Satisfiable",
+              "code": 416,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aca8870c-b77f-4270-9d39-bf165601c0ee",
+              "name": "The blob cannot be returned as has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-patch-id",
+                    ":quilt_patch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                      "key": "quilt_patch_id",
+                      "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "991994f3-e6df-427a-bfc8-cf38b1a4d7d8",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-patch-id",
+                    ":quilt_patch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                      "key": "quilt_patch_id",
+                      "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e34f04c-6280-479f-ac45-75183ea453de",
+              "name": "The requested blob is currently not retrievable from the storage network. This is a transient condition: the blob may be mid-upload, mid-expiry, or enough storage nodes may be temporarily unreachable that the client cannot reconstruct the blob or determine a definitive status. Clients should retry with backoff.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    "by-quilt-patch-id",
+                    ":quilt_patch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "quiltId,<byte>,patchIdBytes,<integer>,<integer>",
+                      "key": "quilt_patch_id",
+                      "description": "(Required) The quilt patch ID encoded as a URL-safe base64 string, without the trailing equal (=) signs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb6b382d-2c48-4915-a91b-5f6f582c2ef1",
+          "name": "Retrieve a Walrus blob.",
+          "request": {
+            "name": "Retrieve a Walrus blob.",
+            "description": {
+              "content": "Reconstructs the blob identified by the provided blob ID from Walrus and returns its raw data.\n\n# HTTP Range Support\n\nThis endpoint also accepts the HTTP `Range` header to request only a portion of the blob.\nWhen a `Range` header is provided with a specific byte range (e.g., `bytes=100-199`), the\nendpoint returns HTTP 206 Partial Content with the requested byte range.\n\n**Important**: When using byte range requests, only the consistency of the individual fetched\nslivers is validated. The entire blob's consistency is NOT validated, which provides better\nperformance for partial reads but with reduced integrity guarantees compared to full blob reads.\n\n# Range Header Format\n\n- `bytes=start-end`: Returns bytes from start to end (inclusive)\n- `bytes=start-`: Not supported yet (TODO(WAL-1108))\n- `bytes=-end`: Not supported yet\n\n# Examples\n\n```bash\n# Get full blob\ncurl \"$AGGREGATOR/v1/blobs/{blob_id}\"\n\n# Get first 1000 bytes\ncurl -H \"Range: bytes=0-999\" \"$AGGREGATOR/v1/blobs/{blob_id}\"",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "blobs",
+                ":blob_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "strict_consistency_check",
+                  "value": "<boolean>",
+                  "description": "Whether to perform a strict consistency check.\n\nThis was the default before `v1.37`. In `v1.37`, the default consistency was changed to a\nmore performant one, which is sufficient for the majority of cases. This flag can be used to\nenable the previous strict consistency check. See\n<https://docs.wal.app/design/encoding.html#data-integrity-and-consistency> for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip_consistency_check",
+                  "value": "<boolean>",
+                  "description": "Whether to skip consistency checks entirely.\n\nWhen enabled, this flag bypasses all consistency verification during blob reading. This\nshould be used only when the writer of the blob is trusted. Does *not* affect any\nauthentication checks for data received from storage nodes, which are always performed."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<byte>",
+                  "key": "blob_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fde4e31-94ff-4820-be1d-275e147f8d8b",
+              "name": "The blob was reconstructed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef2bea84-6f1d-48ec-bc91-73a7e0806f1e",
+              "name": "The consistency check options are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "963b2932-4016-440c-bc22-e8eb7c3fefe3",
+              "name": "The blob size exceeds the maximum allowed size that was configured for this service. The blob is still stored on Walrus and may be accessible through a different aggregator or the CLI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b012a185-b6e9-4be6-83dd-12fd6aee1dae",
+              "name": "May be returned when (1) The requested blob has not yet been stored on Walrus. (2) The requested quilt patch does not exist on Walrus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "610a87e2-deeb-4ebe-b1cf-ded1a49b8f17",
+              "name": "The byte range parameters are invalid. This error is returned when the byte range parameters are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Requested Range Not Satisfiable",
+              "code": 416,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "920419e8-dc96-4abd-bd31-b969bfce2c30",
+              "name": "The blob cannot be returned as has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2483b8a9-ed32-4234-9d77-5f857afcde9b",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "682cdf53-92d6-4e44-be08-455b20928c9c",
+              "name": "The requested blob is currently not retrievable from the storage network. This is a transient condition: the blob may be mid-upload, mid-expiry, or enough storage nodes may be temporarily unreachable that the client cannot reconstruct the blob or determine a definitive status. Clients should retry with backoff.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc921050-d9e9-446d-9c1b-f37424b48888",
+          "name": "Retrieve a specific byte range from a Walrus blob.",
+          "request": {
+            "name": "Retrieve a specific byte range from a Walrus blob.",
+            "description": {
+              "content": "Reads a specific portion of a blob identified by the blob ID, starting from a given byte\nposition and reading a specified number of bytes. This is more efficient than retrieving the\nentire blob when only a portion is needed.\n\nNote that this endpoint has reduced consistency guarantees compared to the full blob read\nsince it will only validate the consistency of individual fetched slivers.\n\n# Query Parameters\n- `start`: The starting byte position (0-indexed, inclusive)\n- `length`: The number of bytes to read\n\n# Validation\n- `start` and `length` must not overflow when added together\n- The byte range `[start, start + length)` must be within the blob's size\n- `length` must be greater than 0\n\n# Example\n```bash\n# Read 1024 bytes starting from position 0\ncurl \"$AGGREGATOR/v1/blobs/{blob_id}/byte-range?start=0&length=1024\"\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "blobs",
+                ":blob_id",
+                "byte-range"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<long>",
+                  "description": "(Required) The starting byte position (0-indexed, inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "length",
+                  "value": "<long>",
+                  "description": "(Required) The number of bytes to read."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<byte>",
+                  "key": "blob_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fef16495-4c66-48b6-b959-94aeb1cd4e09",
+              "name": "The byte range was read successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id",
+                    "byte-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "length",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67439b67-94bb-4a52-a689-ed111500954f",
+              "name": "The byte range parameters are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id",
+                    "byte-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "length",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42639da7-0c20-4fcb-8a8e-4e4f39c5b4ff",
+              "name": "The blob size exceeds the maximum allowed size that was configured for this service.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id",
+                    "byte-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "length",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9829cd3d-81e1-4a23-a6f3-e71c18327085",
+              "name": "The requested blob has not yet been stored on Walrus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id",
+                    "byte-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "length",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faeef9d7-5a76-4ff3-b2ee-3a0fcbc1279e",
+              "name": "The blob cannot be returned as it has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id",
+                    "byte-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "length",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12acbee9-41ca-4578-8539-fbca5ada88f5",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs",
+                    ":blob_id",
+                    "byte-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "length",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "blob_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2a2b93d-4030-4a60-ae9d-adf78e07e5c0",
+          "name": "List patches in a quilt.",
+          "request": {
+            "name": "List patches in a quilt.",
+            "description": {
+              "content": "Returns a list of identifiers and quilt patch IDs for all patches contained in the specified\nquilt. Each quilt patch ID can be used with the `/v1/blobs/by-quilt-patch-id` endpoint to\nretrieve the actual blob data.\n\n# Example\n```bash\ncurl -X GET \"$aggregator/v1/quilts/patches-by-id/\\\nrkcHpHQrornOymttgvSq3zvcmQEsMqzmeUM1HSY4ShU\"\n```\n\nResponse:\n```json\n[\n  {\n    \"identifier\": \"walrus-38.jpeg\",\n    \"patch_id\": \"uIiEbhP2qgZYygEGxJX1GeB-rQATo2yufC2DCp7B4iABAQANAA\"\n  },\n  {\n    \"identifier\": \"walrus-39.avif\",\n    \"patch_id\": \"uIiEbhP2qgZYygEGxJX1GeB-rQATo2yufC2DCp7B4iABDQBnAA\"\n  }\n]\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "quilts",
+                ":quilt_id",
+                "patches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<byte>",
+                  "key": "quilt_id",
+                  "description": "(Required) The quilt ID encoded as URL-safe base64"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31d1385f-1b29-4afe-8623-49d5f1b808f5",
+              "name": "Successfully retrieved the list of patches in the quilt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts",
+                    ":quilt_id",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt ID encoded as URL-safe base64"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"identifier\": \"string\",\n    \"patch_id\": {\n      \"quiltId\": \"E7_nNXvFU_3qZVu3OH1yycRG7LZlyn1-UxEDCDDqGGU\",\n      \"patchIdBytes\": [\n        7804,\n        9566\n      ]\n    },\n    \"tags\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    }\n  },\n  {\n    \"identifier\": \"string\",\n    \"patch_id\": {\n      \"quiltId\": \"E7_nNXvFU_3qZVu3OH1yycRG7LZlyn1-UxEDCDDqGGU\",\n      \"patchIdBytes\": [\n        8017,\n        2308\n      ]\n    },\n    \"tags\": {\n      \"key_0\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5f10690-4729-4a0a-91c1-e451594a3dc8",
+              "name": "The blob size exceeds the maximum allowed size that was configured for this service. The blob is still stored on Walrus and may be accessible through a different aggregator or the CLI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts",
+                    ":quilt_id",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt ID encoded as URL-safe base64"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02592c3c-d235-4204-9fd7-18a557ef446f",
+              "name": "May be returned when (1) The requested blob has not yet been stored on Walrus. (2) The requested quilt patch does not exist on Walrus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts",
+                    ":quilt_id",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt ID encoded as URL-safe base64"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61263a5a-d5d5-4cdd-8ed9-b869269438cf",
+              "name": "The byte range parameters are invalid. This error is returned when the byte range parameters are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts",
+                    ":quilt_id",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt ID encoded as URL-safe base64"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Requested Range Not Satisfiable",
+              "code": 416,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d863c756-2763-470d-96c4-0ff0b3ba8928",
+              "name": "The blob cannot be returned as has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts",
+                    ":quilt_id",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt ID encoded as URL-safe base64"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90e2fa74-3740-471e-83a0-4ce8b3649b5e",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts",
+                    ":quilt_id",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt ID encoded as URL-safe base64"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64858bf6-55d1-40db-822f-40023e5e00cd",
+              "name": "The requested blob is currently not retrievable from the storage network. This is a transient condition: the blob may be mid-upload, mid-expiry, or enough storage nodes may be temporarily unreachable that the client cannot reconstruct the blob or determine a definitive status. Clients should retry with backoff.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts",
+                    ":quilt_id",
+                    "patches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<byte>",
+                      "key": "quilt_id",
+                      "description": "(Required) The quilt ID encoded as URL-safe base64"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3bf638b-7abf-44e7-859b-e174dbe9457b",
+          "name": "Concatenate and stream multiple blobs via GET.",
+          "request": {
+            "name": "Concatenate and stream multiple blobs via GET.",
+            "description": {
+              "content": "Retrieves multiple blobs specified by comma-separated blob IDs or object IDs in the query\nparameter, and streams them concatenated in the order specified. Each blob is loaded,\nstreamed, and then freed from memory before the next blob is processed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1alpha",
+                "blobs",
+                "concat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of blob IDs or object IDs to concatenate."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip_consistency_check",
+                  "value": "<boolean>",
+                  "description": "(Required) Consistency check options for reading the blobs."
+                },
+                {
+                  "disabled": false,
+                  "key": "strict_consistency_check",
+                  "value": "<boolean>",
+                  "description": "(Required) Consistency check options for reading the blobs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70636e08-a450-44d1-b576-850f87d0562c",
+              "name": "Blobs concatenated and streamed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "786330de-2e03-48cf-9b91-1817112e18d4",
+              "name": "The consistency check options are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e047fb48-3396-4cf9-abbb-d50a638b0e91",
+              "name": "One of the blobs exceeds the maximum allowed size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a90347f3-9fbb-4d2f-8ed7-cbfc02277f36",
+              "name": "May be returned when (1) Failed to resolve an object ID to a blob ID. (2) One of the requested blobs was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "053eb54e-be5e-4086-8041-e8367b36875b",
+              "name": "One of the blobs is blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b49bc490-83ca-41ec-b555-987c94b0360e",
+              "name": "Failed to read a blob.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip_consistency_check",
+                      "value": "true"
+                    },
+                    {
+                      "key": "strict_consistency_check",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bde9dc7-1d96-4aaa-82f0-3baca4750858",
+          "name": "Concatenate and stream multiple blobs via POST.",
+          "request": {
+            "name": "Concatenate and stream multiple blobs via POST.",
+            "description": {
+              "content": "Retrieves multiple blobs specified in a JSON request body containing an array of blob IDs\nor object IDs, and streams them concatenated in the order specified. Each blob is loaded,\nstreamed, and then freed from memory before the next blob is processed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1alpha",
+                "blobs",
+                "concat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skip_consistency_check\": \"<boolean,null>\",\n  \"strict_consistency_check\": \"<boolean,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31a98d00-1772-410b-ab2d-9e01ce2222c5",
+              "name": "Blobs concatenated and streamed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skip_consistency_check\": \"<boolean,null>\",\n  \"strict_consistency_check\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c98bbbc8-50db-41b6-bef3-34721d82a795",
+              "name": "The consistency check options are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skip_consistency_check\": \"<boolean,null>\",\n  \"strict_consistency_check\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad4b060c-fbe3-4672-b61e-e402ba0ed940",
+              "name": "One of the blobs exceeds the maximum allowed size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skip_consistency_check\": \"<boolean,null>\",\n  \"strict_consistency_check\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89f3dc9c-28a0-402d-a0fc-a1bb972a4be3",
+              "name": "May be returned when (1) Failed to resolve an object ID to a blob ID. (2) One of the requested blobs was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skip_consistency_check\": \"<boolean,null>\",\n  \"strict_consistency_check\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d252b648-b222-4069-96bd-5d19e5332366",
+              "name": "One of the blobs is blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skip_consistency_check\": \"<boolean,null>\",\n  \"strict_consistency_check\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3549c23-a51d-4cda-bb83-0c45e08fe62d",
+              "name": "Failed to read a blob.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1alpha",
+                    "blobs",
+                    "concat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"skip_consistency_check\": \"<boolean,null>\",\n  \"strict_consistency_check\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "526d6d4a-b1e1-4d32-a286-3fd180fa9689",
+          "name": "Store a blob on Walrus.",
+          "request": {
+            "name": "Store a blob on Walrus.",
+            "description": {
+              "content": "Store a (potentially deletable) blob on Walrus for 1 or more epochs. The associated on-Sui\nobject can be sent to a specified Sui address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "blobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "encoding_type",
+                  "value": "<string>",
+                  "description": "The encoding type to use for the blob."
+                },
+                {
+                  "disabled": false,
+                  "key": "epochs",
+                  "value": "<integer>",
+                  "description": "The number of epochs, ahead of the current one, for which to store the blob.\n\nThe default is 1 epoch."
+                },
+                {
+                  "disabled": false,
+                  "key": "deletable",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher creates a deletable blob.\n\nNew blobs are created as deletable by default since v1.33, and this flag is no longer\nrequired."
+                },
+                {
+                  "disabled": false,
+                  "key": "permanent",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher creates a permanent blob instead of a deletable one.\n\nThis was the default behavior before v1.33, but *blobs are now deletable by default*."
+                },
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher will always store the blob, creating a new Blob object.\n\nThe blob will be stored even if the blob is already certified on Walrus for the specified\nnumber of epochs."
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec",
+                  "description": "The quilt version to use (for quilt endpoints only).\nValid values: \"v1\", \"V1\", or \"1\". Defaults to \"v1\" if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "reuse_resources",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher will attempt to reuse existing on-chain resources (e.g., storage and\nblob objects) when storing a blob."
+                },
+                {
+                  "disabled": false,
+                  "key": "send_object_to",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<binary>"
+            }
+          },
+          "response": [
+            {
+              "id": "7b6254bf-1ead-4c8a-b07d-c6b625b58d47",
+              "name": "The blob was stored successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alreadyCertified\": {\n    \"blob_id\": \"E7_nNXvFU_3qZVu3OH1yycRG7LZlyn1-UxEDCDDqGGU\",\n    \"end_epoch\": 5028,\n    \"event\": {\n      \"txDigest\": [\n        4630,\n        2464\n      ],\n      \"eventSeq\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f848a882-51a8-461a-a667-4e756db36b26",
+              "name": "May be returned when (1) The blob cannot be defined as both deletable and permanent. (2) The request is malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0faa9852-fe40-4a26-ba42-50c6f3517bd3",
+              "name": "The blob is too large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09b49bdc-11e6-4788-ae97-24801160213f",
+              "name": "The blob cannot be returned as it has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5471857d-7d09-4275-b8cc-2737a0995315",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea9ba527-c1fa-4084-9d9c-a04d00156261",
+              "name": "The service failed to store the blob to sufficient Walrus storage nodes before a timeout, please retry the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7434bec3-76e6-4693-88ea-45959560ae2e",
+          "name": "Store multiple files as a quilt using multipart/form-data.",
+          "request": {
+            "name": "Store multiple files as a quilt using multipart/form-data.",
+            "description": {
+              "content": "Accepts a multipart form with files and optional per-file Walrus-native metadata.\nThe form contains:\n- Files identified by their identifiers as field names\n- An optional `_metadata` field containing a JSON array with per-file Walrus-native metadata\n\n# Contents of Walrus-native metadata\n- `identifier`: The identifier of the file, must match the corresponding file field name\n- `tags`: JSON object with string key-value pairs (optional)\n\nFiles without corresponding metadata entries will be stored with empty tags.\n\n# Examples\n\n## Files without Walrus-native metadata, with quilt version V1\n```bash\ncurl -X PUT \"$PUBLISHER/v1/quilts?epochs=5&quilt_version=V1\" \\\n  -F \"contract-v2=@document.pdf\" \\\n  -F \"logo-2024=@image.png\"\n```\n\n## Files with Walrus-native metadata, with default quilt version\n```bash\ncurl -X PUT \"$PUBLISHER/v1/quilts?epochs=5\" \\\n  -F \"quilt-manual=@document.pdf\" \\\n  -F \"logo-2025=@image.png\" \\\n  -F \"_metadata=[\n    {\"identifier\": \"quilt-manual\", \"tags\": {\"creator\": \"walrus\", \"version\": \"1.0\"}},\n    {\"identifier\": \"logo-2025\", \"tags\": {\"type\": \"logo\", \"format\": \"png\"}}\n  ]'\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "quilts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "encoding_type",
+                  "value": "<string>",
+                  "description": "The encoding type to use for the blob."
+                },
+                {
+                  "disabled": false,
+                  "key": "epochs",
+                  "value": "<integer>",
+                  "description": "The number of epochs, ahead of the current one, for which to store the blob.\n\nThe default is 1 epoch."
+                },
+                {
+                  "disabled": false,
+                  "key": "deletable",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher creates a deletable blob.\n\nNew blobs are created as deletable by default since v1.33, and this flag is no longer\nrequired."
+                },
+                {
+                  "disabled": false,
+                  "key": "permanent",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher creates a permanent blob instead of a deletable one.\n\nThis was the default behavior before v1.33, but *blobs are now deletable by default*."
+                },
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher will always store the blob, creating a new Blob object.\n\nThe blob will be stored even if the blob is already certified on Walrus for the specified\nnumber of epochs."
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec",
+                  "description": "The quilt version to use (for quilt endpoints only).\nValid values: \"v1\", \"V1\", or \"1\". Defaults to \"v1\" if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "reuse_resources",
+                  "value": "<boolean>",
+                  "description": "If true, the publisher will attempt to reuse existing on-chain resources (e.g., storage and\nblob objects) when storing a blob."
+                },
+                {
+                  "disabled": false,
+                  "key": "send_object_to",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": [
+            {
+              "id": "b8de3398-88a0-4ca2-a561-456b6ac4f81b",
+              "name": "The quilt was stored successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blobStoreResult\": {\n    \"alreadyCertified\": {\n      \"blob_id\": \"E7_nNXvFU_3qZVu3OH1yycRG7LZlyn1-UxEDCDDqGGU\",\n      \"end_epoch\": 9616,\n      \"event\": {\n        \"txDigest\": \"EhtoQF9UpPyg5PsPUs69LdkcRrjQ3R4cTsHnwxZVTNrC\",\n        \"eventSeq\": 0\n      }\n    }\n  },\n  \"storedQuiltBlobs\": [\n    {\n      \"identifier\": \"string\",\n      \"quiltPatchId\": \"string\"\n    },\n    {\n      \"identifier\": \"string\",\n      \"quiltPatchId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c92fdc22-f96d-4214-8216-c3b4470a2fa8",
+              "name": "May be returned when (1) The blob cannot be defined as both deletable and permanent. (2) The request is malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c74fe96a-1766-4e65-991e-402122dd16d3",
+              "name": "The quilt is too large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5dcbbaf8-136c-49d0-9655-294e81db541c",
+              "name": "The blob cannot be returned as it has been blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                }
+              },
+              "code": 451,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8ca2101-606b-47c9-94ce-1955d312dd41",
+              "name": "An internal server error has occurred. Please report this error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b4de9b4-b0fa-4009-82a3-3504ef9fbc5e",
+              "name": "The service failed to store the blob to sufficient Walrus storage nodes before a timeout, please retry the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "quilts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "encoding_type",
+                      "value": "RS2"
+                    },
+                    {
+                      "key": "epochs",
+                      "value": "9551"
+                    },
+                    {
+                      "key": "deletable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "permanent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "reference #/components/schemas/QuiltVersionEnum not found in the OpenAPI spec"
+                    },
+                    {
+                      "key": "reuse_resources",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "send_object_to",
+                      "value": "0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ad42e344-5d2f-4ef1-a1ae-e99a58041bac",
+    "name": "Walrus Aggregator routes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Mysten Labs\n Email: build@mystenlabs.com",
+      "type": "text/plain"
+    }
+  }
+}
