@@ -46,6 +46,16 @@ tags:
 - Blockchain
 - Web3
 - Data
+- Artificial Intelligence
+- Sui
+tags_raw:
+- Company
+- Infrastructure
+- Storage
+- Decentralized Storage
+- Blockchain
+- Web3
+- Data
 - AI
 - Sui
 apis:
@@ -55,6 +65,8 @@ apis:
   humanURL: https://docs.wal.app/docs/http-api/reading-blobs
   baseURL: https://aggregator.walrus-mainnet.walrus.space
   tags:
+  - Routes
+  tags_raw:
   - routes
   properties:
   - type: OpenAPI
