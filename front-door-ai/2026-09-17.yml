@@ -1,0 +1,27 @@
+# Front Door AI Index — walrus-protocol — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: walrus-protocol
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.walrus.xyz
+  final_host: walrus.xyz
+  ownership: own
+  owner: walrus-protocol
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 24
+  host_score: 24
+  density: 26.34
+  words: 911
+  tiers:
+    agentic: 5
+    core: 19
+    model: 0
+  ambiguous: 14
+  top_terms:
+    AI: 19
+    agent: 14
+    AI agent: 5

@@ -1,16 +1,27 @@
 {
   "provider": "walrus-protocol",
   "sources": [
-    "walrus-protocol-routes-api-openapi.yml"
+    "_original/walrus-protocol-aggregator-openapi.json",
+    "_original/walrus-protocol-publisher-openapi.json"
   ],
   "outputs": [
     "walrus-protocol-routes-api-openapi.yml"
   ],
   "archived": [],
   "errors": [
-    "walrus-protocol-routes-api-openapi.yml: dangling $ref: #/components/schemas/QuiltVersionEnum"
+    "walrus-protocol-publisher-openapi.json: dangling $ref: #/components/schemas/QuiltVersionEnum"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "walrus-protocol-aggregator-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "walrus-protocol-aggregator-openapi.json: declared missing tag: routes",
+    "walrus-protocol-publisher-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "walrus-protocol-publisher-openapi.json: declared missing tag: routes",
+    "tag 'routes' spans 2 source specs (walrus-protocol-aggregator-openapi.json, walrus-protocol-publisher-openapi.json): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "walrus-protocol-routes-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
