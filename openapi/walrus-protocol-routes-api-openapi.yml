@@ -1088,35 +1088,48 @@ paths:
                 $ref: '#/components/schemas/Status'
 components:
   schemas:
-    ObjectID:
-      type: string
-      title: Sui object ID
-      description: Sui object ID as a hexadecimal string
-      examples:
-      - '0x56ae1c86e17db174ea002f8340e28880bc8a8587c56e8604a4fa6b1170b23a60'
-    QuiltPatchItem:
+    ConcatRequestBody:
       type: object
-      description: Response item for a patch in a quilt.
+      description: The request body for concatenating multiple blobs via POST.
       required:
-      - identifier
-      - patch_id
-      - tags
+      - ids
       properties:
-        identifier:
-          type: string
-          description: The identifier of the patch (e.g., filename).
-        patch_id:
-          $ref: '#/components/schemas/QuiltPatchId'
-          description: 'The patch ID for this patch, encoded as a URL-safe base64 string, without the trailing equal
+        ids:
+          type: array
+          items:
+            type: string
+          description: List of blob IDs or object IDs to concatenate.
+        skip_consistency_check:
+          type:
+          - boolean
+          - 'null'
+          description: Whether to skip consistency checks entirely.
+        strict_consistency_check:
+          type:
+          - boolean
+          - 'null'
+          description: Whether to perform a strict consistency check.
+      additionalProperties: false
+    QuiltPatchId:
+      type: object
+      description: 'A QuiltPatchId is a globally unique id for a quilt patch.
 
-            (=) signs.'
-        tags:
-          type: object
-          description: Tags for the patch.
-          additionalProperties:
-            type: string
-          propertyNames:
-            type: string
+
+        A quilt patch is a individual blob within a quilt.'
+      required:
+      - quiltId
+      - patchIdBytes
+      properties:
+        patchIdBytes:
+          type: array
+          items:
+            type: integer
+            format: int32
+            minimum: 0
+          description: The patch id of the quilt patch.
+        quiltId:
+          $ref: '#/components/schemas/BlobId'
+          description: The BlobId of the quilt as a Walrus blob.
     ReadOptions:
       type: object
       description: The query parameters for a read operation.
@@ -1144,6 +1157,29 @@ components:
 
             <https://docs.wal.app/design/encoding.html#data-integrity-and-consistency> for more details.'
       additionalProperties: false
+    QuiltPatchItem:
+      type: object
+      description: Response item for a patch in a quilt.
+      required:
+      - identifier
+      - patch_id
+      - tags
+      properties:
+        identifier:
+          type: string
+          description: The identifier of the patch (e.g., filename).
+        patch_id:
+          $ref: '#/components/schemas/QuiltPatchId'
+          description: 'The patch ID for this patch, encoded as a URL-safe base64 string, without the trailing equal
+
+            (=) signs.'
+        tags:
+          type: object
+          description: Tags for the patch.
+          additionalProperties:
+            type: string
+          propertyNames:
+            type: string
     BlobId:
       type: string
       format: byte
@@ -1196,48 +1232,82 @@ components:
               message:
                 type: string
                 description: A message describing the error in detail.
-    ConcatRequestBody:
+    ObjectID:
+      type: string
+      title: Sui object ID
+      description: Sui object ID as a hexadecimal string
+      examples:
+      - '0x56ae1c86e17db174ea002f8340e28880bc8a8587c56e8604a4fa6b1170b23a60'
+    StorageResource:
       type: object
-      description: The request body for concatenating multiple blobs via POST.
+      description: Sui object for storage resources.
       required:
-      - ids
+      - id
+      - startEpoch
+      - endEpoch
+      - storageSize
       properties:
-        ids:
-          type: array
-          items:
-            type: string
-          description: List of blob IDs or object IDs to concatenate.
-        skip_consistency_check:
-          type:
-          - boolean
-          - 'null'
-          description: Whether to skip consistency checks entirely.
-        strict_consistency_check:
-          type:
-          - boolean
-          - 'null'
-          description: Whether to perform a strict consistency check.
-      additionalProperties: false
-    QuiltPatchId:
+        endEpoch:
+          $ref: '#/components/schemas/u32'
+          description: The end epoch of the resource (exclusive).
+        id:
+          $ref: '#/components/schemas/ObjectID'
+        startEpoch:
+          $ref: '#/components/schemas/u32'
+          description: The start epoch of the resource (inclusive).
+        storageSize:
+          type: integer
+          format: int64
+          description: The total amount of reserved storage.
+          minimum: 0
+    Blob:
       type: object
-      description: 'A QuiltPatchId is a globally unique id for a quilt patch.
-
-
-        A quilt patch is a individual blob within a quilt.'
+      description: Sui object for a blob.
       required:
-      - quiltId
-      - patchIdBytes
+      - id
+      - registeredEpoch
+      - blobId
+      - size
+      - encodingType
+      - storage
+      - deletable
       properties:
-        patchIdBytes:
-          type: array
-          items:
-            type: integer
-            format: int32
-            minimum: 0
-          description: The patch id of the quilt patch.
-        quiltId:
+        blobId:
           $ref: '#/components/schemas/BlobId'
-          description: The BlobId of the quilt as a Walrus blob.
+          description: The blob ID.
+        certifiedEpoch:
+          oneOf:
+          - type: 'null'
+          - $ref: '#/components/schemas/u32'
+            description: The epoch in which the blob was first certified, `None` if the blob is uncertified.
+        deletable:
+          type: boolean
+          description: Marks the blob as deletable.
+        encodingType:
+          $ref: '#/components/schemas/EncodingType'
+          description: The encoding coding type used for the blob.
+        id:
+          $ref: '#/components/schemas/ObjectID'
+        registeredEpoch:
+          $ref: '#/components/schemas/u32'
+          description: The epoch in which the blob has been registered.
+        size:
+          type: integer
+          format: int64
+          description: The (unencoded) size of the blob.
+          minimum: 0
+        storage:
+          $ref: '#/components/schemas/StorageResource'
+          description: The [`StorageResource`] used to store the blob.
+    SuiAddress:
+      type: string
+      title: Sui address
+      description: Sui address encoded as a hexadecimal string
+      examples:
+      - '0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0'
+    Binary:
+      type: string
+      format: binary
     BlobStoreResult:
       oneOf:
       - type: object
@@ -1357,11 +1427,6 @@ components:
                 type: string
                 description: The phase after the error occurred.
       description: Result when attempting to store a blob.
-    EncodingType:
-      type: string
-      description: Supported Walrus encoding types.
-      enum:
-      - RS2
     EventID:
       type: object
       description: Schema for the [`sui_types::event::EventID`] type.
@@ -1380,31 +1445,6 @@ components:
       examples:
       - txDigest: EhtoQF9UpPyg5PsPUs69LdkcRrjQ3R4cTsHnwxZVTNrC
         eventSeq: 0
-    u32:
-      type: integer
-      format: int32
-      minimum: 0
-    SuiAddress:
-      type: string
-      title: Sui address
-      description: Sui address encoded as a hexadecimal string
-      examples:
-      - '0x02a212de6a9dfa3a69e22387acfbafbb1a9e591bd9d636e7895dcfc8de0'
-    QuiltStoreResult:
-      type: object
-      description: Result when attempting to store a quilt.
-      required:
-      - blobStoreResult
-      - storedQuiltBlobs
-      properties:
-        blobStoreResult:
-          $ref: '#/components/schemas/BlobStoreResult'
-          description: The result of storing the quilt data as a blob.
-        storedQuiltBlobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/StoredQuiltPatch'
-          description: The structure of the quilt.
     StoredQuiltPatch:
       type: object
       description: Identifies a stored quilt patch.
@@ -1431,6 +1471,49 @@ components:
             format: int64
             minimum: 0
           description: The range of the quilt patch.
+    QuiltStoreResult:
+      type: object
+      description: Result when attempting to store a quilt.
+      required:
+      - blobStoreResult
+      - storedQuiltBlobs
+      properties:
+        blobStoreResult:
+          $ref: '#/components/schemas/BlobStoreResult'
+          description: The result of storing the quilt data as a blob.
+        storedQuiltBlobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/StoredQuiltPatch'
+          description: The structure of the quilt.
+    EncodingType:
+      type: string
+      description: Supported Walrus encoding types.
+      enum:
+      - RS2
+    u32:
+      type: integer
+      format: int32
+      minimum: 0
+    EventOrObjectId:
+      oneOf:
+      - type: object
+        description: The variant representing an event ID.
+        required:
+        - event
+        properties:
+          event:
+            $ref: '#/components/schemas/EventID'
+            description: The variant representing an event ID.
+      - type: object
+        description: The variant representing an object ID.
+        required:
+        - object
+        properties:
+          object:
+            $ref: '#/components/schemas/ObjectID'
+            description: The variant representing an object ID.
+      description: Either an event ID or an object ID.
     RegisterBlobOp:
       oneOf:
       - type: object
@@ -1536,89 +1619,6 @@ components:
                 description: The number of epochs extended wrt the original epoch end.
                 minimum: 0
       description: The operation performed on blob and storage resources to register a blob.
-    Binary:
-      type: string
-      format: binary
-    Blob:
-      type: object
-      description: Sui object for a blob.
-      required:
-      - id
-      - registeredEpoch
-      - blobId
-      - size
-      - encodingType
-      - storage
-      - deletable
-      properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
-          description: The blob ID.
-        certifiedEpoch:
-          oneOf:
-          - type: 'null'
-          - $ref: '#/components/schemas/u32'
-            description: The epoch in which the blob was first certified, `None` if the blob is uncertified.
-        deletable:
-          type: boolean
-          description: Marks the blob as deletable.
-        encodingType:
-          $ref: '#/components/schemas/EncodingType'
-          description: The encoding coding type used for the blob.
-        id:
-          $ref: '#/components/schemas/ObjectID'
-        registeredEpoch:
-          $ref: '#/components/schemas/u32'
-          description: The epoch in which the blob has been registered.
-        size:
-          type: integer
-          format: int64
-          description: The (unencoded) size of the blob.
-          minimum: 0
-        storage:
-          $ref: '#/components/schemas/StorageResource'
-          description: The [`StorageResource`] used to store the blob.
-    EventOrObjectId:
-      oneOf:
-      - type: object
-        description: The variant representing an event ID.
-        required:
-        - event
-        properties:
-          event:
-            $ref: '#/components/schemas/EventID'
-            description: The variant representing an event ID.
-      - type: object
-        description: The variant representing an object ID.
-        required:
-        - object
-        properties:
-          object:
-            $ref: '#/components/schemas/ObjectID'
-            description: The variant representing an object ID.
-      description: Either an event ID or an object ID.
-    StorageResource:
-      type: object
-      description: Sui object for storage resources.
-      required:
-      - id
-      - startEpoch
-      - endEpoch
-      - storageSize
-      properties:
-        endEpoch:
-          $ref: '#/components/schemas/u32'
-          description: The end epoch of the resource (exclusive).
-        id:
-          $ref: '#/components/schemas/ObjectID'
-        startEpoch:
-          $ref: '#/components/schemas/u32'
-          description: The start epoch of the resource (inclusive).
-        storageSize:
-          type: integer
-          format: int64
-          description: The total amount of reserved storage.
-          minimum: 0
 x-refined-from:
 - walrus-protocol-aggregator-openapi.json
 - walrus-protocol-publisher-openapi.json
