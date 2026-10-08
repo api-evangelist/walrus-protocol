@@ -1,0 +1,27 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://costcalculator.wal.app/
+sources:
+- https://costcalculator.wal.app/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+delivery:
+  delivery: unclear
+  method: page
+  read: '2026-10-07'
+published: false
+note: 'No numeric price is published on the pricing page; Interactive cost calculator for Walrus decentralized
+  storage; all displayed figures are zeroed placeholders awaiting user input (e.g. ''$0.000000 / GB /
+  month'', ''Total WAL: 0.0000 WAL''). No actual published rates appear in the page text, so no priced
+  plans could be recorded. Charging is usage-based (USD-pegged storage cost per GB per epoch of 2 weeks
+  plus per-GB upload/write cost and Sui transaction fees).'
+plan_count: 0
+plans: []
+rate_limit_statements:
+- Blob size is limited to 13GB maximum
+- For Batched Uploads, a maximum of 600 patches per quilt is used
