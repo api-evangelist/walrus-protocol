@@ -64,6 +64,122 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Walrus Protocol is a company surfaced as a portfolio company of electric-capital and added to the API Evangelist network as a stub for enrichment. Sector: infrastructure. This profile is a lead awaiting the enrichment pipeline.
+Walrus is a decentralized blob storage protocol built on Sui by Mysten Labs, the team behind the Sui blockchain. It provides robust, cost-effective storage for large binary objects with high-availability guarantees using Red Stuff erasure coding across a permissionless set of storage nodes. Data is content-addressed, immutable, verifiable without trusting any single provider, and portable across apps, providers, and AI agents. Developers interact through the `walrus` client CLI, a TypeScript SDK, and an HTTP API served by publisher (write) and aggregator (read) daemons, with storage paid in WAL and on-chain coordination in SUI. Walrus also powers Walrus Sites (decentralized web hosting) and Walrus Memory (a portable memory layer for AI agents). Backed by Electric Capital.
 
-Backed by: electric-capital — https://www.walrus.xyz/
+**Areas:** Company · Infrastructure · Storage · Decentralized Storage · Blockchain · Web3 · Data · Artificial Intelligence · Sui
+
+## Walrus Protocol on APIs.io
+
+Everything profiled for Walrus Protocol is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/walrus-protocol/](https://apis.io/providers/walrus-protocol/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Walrus Protocol Routes API](https://apis.io/apis/walrus-protocol/walrus-protocol-routes-api/) — The routes API from Walrus Protocol — 9 operation(s) for routes.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [walrus-protocol](https://apis.io/servers/walrus-protocol/walrus-protocol/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Walrus Aggregator routes API](https://apis.io/collections/walrus-protocol/open-walrus-protocol-routes-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Walrus Protocol Aggregator Overlay](https://apis.io/overlays/walrus-protocol/walrus-protocol-aggregator-overlay/)
+- [Walrus Protocol Publisher Overlay](https://apis.io/overlays/walrus-protocol/walrus-protocol-publisher-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Walrus Protocol Authentication](https://apis.io/security/walrus-protocol/walrus-protocol-authentication/)
+- [Walrus Protocol Domain Security](https://apis.io/security/walrus-protocol/walrus-protocol-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Walrus Protocol Plans Pricing](https://apis.io/plans/walrus-protocol/walrus-protocol-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.walrus.xyz/)
+- [Documentation](https://docs.wal.app/)
+- [Getting started](https://docs.wal.app/docs/getting-started)
+- [API reference](https://docs.wal.app/docs/http-api)
+- [Pricing](https://costcalculator.wal.app/)
+- [Support](https://discord.gg/walrusprotocol)
+- [Changelog](https://github.com/MystenLabs/walrus/releases)
+- [Blog](https://blog.walrus.xyz/)
+- [Terms of service](https://docs.wal.app/docs/legal/walrus_general_tos)
+- [Privacy policy](https://docs.wal.app/docs/legal/privacy)
+- [GitHub](https://github.com/MystenLabs)
+- [Status](https://status.walrus.xyz)
+
+## API Evangelist rating
+
+**Kin Score 44.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 44.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 31.6 |
+
+**Agent readiness 28.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | derived (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/walrus-protocol/](https://apis.io/providers/walrus-protocol/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Walrus Protocol: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/walrus-protocol/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
